@@ -1,10 +1,12 @@
 " Commands
 command! -bang -nargs=+ -complete=dir AgRaw call agriculture#fzf_ag_raw(agriculture#smart_quote_input(<q-args>), <bang>0)
 command! -bang -nargs=+ -complete=dir RgRaw call agriculture#fzf_rg_raw(agriculture#smart_quote_input(<q-args>), <bang>0)
+command! -bang -nargs=+ -complete=dir RgRawAll call agriculture#fzf_rg_raw_all(agriculture#smart_quote_input(<q-args>), <bang>0)
 
 " Mappings
 nnoremap <Plug>AgRawSearch :AgRaw<Space>
 nnoremap <Plug>RgRawSearch :RgRaw<Space>
+nnoremap <Plug>RgRawSearchAll :RgRawAll<Space>
 
 " Mappings to search visual selection
 vnoremap <Plug>AgRawVisualSelection "ay:call agriculture#trim_and_escape_register_a()<CR>:AgRaw -Q -- $'<C-r>a'
