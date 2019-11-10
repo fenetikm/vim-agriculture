@@ -6,7 +6,7 @@ command! -bang -nargs=+ -complete=dir RgRawAll call agriculture#fzf_rg_raw_all(a
 " Mappings
 nnoremap <Plug>AgRawSearch :AgRaw<Space>
 nnoremap <Plug>RgRawSearch :RgRaw<Space>
-nnoremap <Plug>RgRawSearchAll :RgRawAll<Space>
+nnoremap <Plug>RgRawAllSearch :RgRawAll<Space>
 
 " Mappings to search visual selection
 vnoremap <Plug>AgRawVisualSelection "ay:call agriculture#trim_and_escape_register_a()<CR>:AgRaw -Q -- $'<C-r>a'
