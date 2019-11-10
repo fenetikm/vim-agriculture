@@ -15,3 +15,4 @@ vnoremap <Plug>RgRawVisualSelection "ay:call agriculture#trim_and_escape_registe
 " Mappings to search word under cursor
 nnoremap <Plug>AgRawWordUnderCursor "ayiw:call agriculture#trim_and_escape_register_a()<CR>:AgRaw -Q -- $'<C-r>a'
 nnoremap <Plug>RgRawWordUnderCursor "ayiw:call agriculture#trim_and_escape_register_a()<CR>:RgRaw -F -- $'<C-r>a'
+nnoremap <Plug>RgRawAllWordUnderCursor "ayiw:call agriculture#trim_and_escape_register_a()<CR>:RgRawAll -F -- $'<C-r>a'
