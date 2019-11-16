@@ -1,9 +1,10 @@
-if exists('g:loaded_architecture')
-  finish
+if !exists('g:agriculture#rg_base_options')
+  let g:agriculture#rg_base_options='--column --line-number --no-heading --color=always --smart-case'
 endif
-let g:loaded_architecture=1
 
-let g:agriculture#rg_base_options='--column --line-number --no-heading --color=always --smart-case'
+if !exists('g:agriculture#fzf_extra_options')
+  let g:agriculture#fzf_extra_options=''
+endif
 
 function! agriculture#smart_quote_input(input)
   if get(g:, 'agriculture#disable_smart_quoting', 0) > 0
@@ -37,9 +38,10 @@ function! agriculture#fzf_rg_raw(command_suffix, ...)
   endif
   let userOptions = get(g:, 'agriculture#rg_options', '')
   let baseOptions = get(g:, 'agriculture#rg_base_options', '')
-  let fzfExtraOptions = get(g:, 'agriculture#fzf_extra_options', {})
+  let fzfExtraOptions = get(g:, 'agriculture#fzf_extra_options', '')
   let command = 'rg ' . baseOptions . ' ' . s:trim(userOptions . ' ' . a:command_suffix)
-  return call('fzf#vim#grep', extend([command, 1, fzfExtraOptions], a:000))
+  echom g:agriculture#fzf_extra_options
+  return call('fzf#vim#grep', extend([command, 1, {'options': fzfExtraOptions}], a:000))
 endfunction
 
 function! agriculture#fzf_rg_raw_all(command_suffix, ...)
@@ -49,9 +51,9 @@ function! agriculture#fzf_rg_raw_all(command_suffix, ...)
 
   let userOptions = get(g:, 'agriculture#rg_options', '')
   let baseOptions = get(g:, 'agriculture#rg_base_options', '')
-  let fzfExtraOptions = get(g:, 'agriculture#fzf_extra_options', {})
+  let fzfExtraOptions = get(g:, 'agriculture#fzf_extra_options', '')
   let command = 'rg ' . baseOptions . ' --no-ignore --hidden ' . s:trim(userOptions . ' ' . a:command_suffix)
-  return call('fzf#vim#grep', extend([command, 1, fzfExtraOptions], a:000))
+  return call('fzf#vim#grep', extend([command, 1, {'options': fzfExtraOptions}], a:000))
 endfunction
 
 function! s:trim(str)
