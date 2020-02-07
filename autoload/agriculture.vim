@@ -40,7 +40,6 @@ function! agriculture#fzf_rg_raw(command_suffix, ...)
   let baseOptions = get(g:, 'agriculture#rg_base_options', '')
   let fzfExtraOptions = get(g:, 'agriculture#fzf_extra_options', '')
   let command = 'rg ' . baseOptions . ' ' . s:trim(userOptions . ' ' . a:command_suffix)
-  echom g:agriculture#fzf_extra_options
   return call('fzf#vim#grep', extend([command, 1, {'options': fzfExtraOptions}], a:000))
 endfunction
 
